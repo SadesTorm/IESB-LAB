@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "397044136221",
+    "firebase_url": "https://iesb-lab.firebaseio.com",
+    "project_id": "iesb-lab",
+    "storage_bucket": "iesb-lab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397044136221:android:368a9bd0cfd9961c",
+        "android_client_info": {
+          "package_name": "com.sadestorm.iesblab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397044136221-g2o2r4f4irncqoglm84feqbmgi6haqt0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkbqweppBOikJWd-y75XZNLOTpkSpiov8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
