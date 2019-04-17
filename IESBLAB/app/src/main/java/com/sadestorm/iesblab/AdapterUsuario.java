@@ -31,7 +31,7 @@ public class AdapterUsuario extends RecyclerView.Adapter<AdapterUsuario.ViewHold
     public ViewHolderGerenciaUsuario onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) { // Cria visualização na tela do cel.
 
 
-        View usuarioLista = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_usuario,viewGroup,false);
+        View usuarioLista = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_usuario, viewGroup, false);
 
 
         return new ViewHolderGerenciaUsuario(usuarioLista);

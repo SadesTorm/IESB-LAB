@@ -29,7 +29,7 @@ public class GerenciarUsuario extends AppCompatActivity {
     private RecyclerView viewRecycle;
     private List<Usuario> listaUsuario;
     private AdapterUsuario adapter;
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Usuario");
+    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb/Usuario");
 
     TextView txtteste;
 
@@ -39,6 +39,8 @@ public class GerenciarUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gerenciar_usuario);
+
+
 
         viewRecycle = findViewById(R.id.recyclerView);
 
@@ -51,37 +53,35 @@ public class GerenciarUsuario extends AppCompatActivity {
         viewRecycle.setHasFixedSize(true);
         adapter = new AdapterUsuario(listaUsuario);
         viewRecycle.setAdapter(adapter);
-
-
-
+        carregaDados();
 
     }
 
-
-
-
-
-    /*
     public void carregaDados(){
 
         final String email;
-        DatabaseReference dbUsuario = referencia.child("Iesb").child("Usuario");
+        //DatabaseReference dbUsuario = referencia.child("Iesb").child("Usuario");
 
 
-        Query consulta = dbUsuario.orderByChild("matricula");
+
+       Query consulta = referencia.orderByChild("matricula");
+        txtteste.setText("funcionando");
+
+
 
         consulta.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+            @Override
+
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                txtteste.setText("foooooor");
+                listaUsuario.clear();
                 for (DataSnapshot dt : dataSnapshot.getChildren()) {
                     txtteste.setText("funcionando");
-                    //listaUsuario.add()
-
-
-
-
+                    Usuario u = dt.getValue(Usuario.class);
+                    listaUsuario.add(u);
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -89,5 +89,5 @@ public class GerenciarUsuario extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 }

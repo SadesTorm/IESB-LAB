@@ -31,6 +31,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
     DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
     FirebaseAuth verificaEmail = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,8 +50,8 @@ public class PerfilUsuario extends AppCompatActivity {
 
         carregaDados();
 
-        novaResevaBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        novaResevaBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 Intent iNovaReseva = new Intent(PerfilUsuario.this, PerfilGestor.class);
                 startActivity(iNovaReseva);
             }
@@ -74,7 +75,7 @@ public class PerfilUsuario extends AppCompatActivity {
         });
     }
 
-    public void carregaDados(){
+    public void carregaDados() {
 
         final String email;
         DatabaseReference dbUsuario = referencia.child("Iesb").child("Usuario");

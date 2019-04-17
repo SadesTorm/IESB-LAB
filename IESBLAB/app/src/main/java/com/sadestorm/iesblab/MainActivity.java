@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
 
-        // progress dialog /*/*/*/*/*/*/*/***/*/*/*/*/*/*/*/*/*
+    // progress dialog /*/*/*/*/*/*/*/***/*/*/*/*/*/*/*/*/*
 
 
     EditText matriculaTxt;
@@ -60,16 +60,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-              login(matriculaTxt.getText().toString(), senhaTxt.getText().toString(),MainActivity.this);
+                login(matriculaTxt.getText().toString(), senhaTxt.getText().toString(), MainActivity.this);
 
             }
         });
     }
 
     public void login(final String matriculaTxt, final String senha, final Activity activity) {
-
-
-
 
 
         final FirebaseAuth autenticaLogin = FirebaseAuth.getInstance();
@@ -82,24 +79,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot dt : dataSnapshot.getChildren()){
-                    if (dt.getKey() != null && dt.getKey().equals(matriculaTxt) && dt.child("confirma").getValue().toString().equals("1") ) {
+                for (DataSnapshot dt : dataSnapshot.getChildren()) {
+                    if (dt.getKey() != null && dt.getKey().equals(matriculaTxt) && dt.child("confirma").getValue().toString().equals("1")) {
 
 
                         usuario.setEmail(dt.child("email").getValue().toString());
                         usuario.setFuncao(dt.child("funcao").getValue().toString());
 
-                        Task task = autenticaLogin.signInWithEmailAndPassword(usuario.getEmail(),senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        Task task = autenticaLogin.signInWithEmailAndPassword(usuario.getEmail(), senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = autenticaLogin.getCurrentUser();
                                     Toast.makeText(activity, "logando:" + user.getEmail(), Toast.LENGTH_SHORT).show();
-                                    if(usuario.getFuncao().equals("Gestor")){
+                                    if (usuario.getFuncao().equals("Gestor")) {
 
-                                        Intent i= new Intent(activity, PerfilGestor.class);
+                                        Intent i = new Intent(activity, PerfilGestor.class);
                                         startActivity(i);
-                                    }else {
+                                    } else {
                                         Intent iLogin = new Intent(activity, PerfilUsuario.class);
                                         startActivity(iLogin);
                                     }
