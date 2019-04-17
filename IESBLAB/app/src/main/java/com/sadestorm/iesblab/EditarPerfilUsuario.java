@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
     Usuario usuario = new Usuario();
 
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth autentica = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         salvarBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //usuario.setEmail(emailTxt.getText().toString());
+                usuario.setEmail(emailTxt.getText().toString());
                 usuario.setTelefone(telefoneTxt.getText().toString());
                 atualizaDados();
 
@@ -75,10 +77,10 @@ public class EditarPerfilUsuario extends AppCompatActivity {
 
     public void carregaDados() {
 
-        final FirebaseAuth verificaEmail = FirebaseAuth.getInstance();
+
         final String email;
         DatabaseReference dbUsuario = referencia.child("Iesb").child("Usuario");
-        email = verificaEmail.getCurrentUser().getEmail(); // verifica email logado.
+        email = autentica.getCurrentUser().getEmail(); // verifica email logado.
 
         Query consulta = dbUsuario.orderByChild("email").equalTo(email);
         consulta.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,11 +95,13 @@ public class EditarPerfilUsuario extends AppCompatActivity {
                         matriculaTxt.setText(dt.child("matricula").getValue().toString());
                         emailTxt.setText(dt.child("email").getValue().toString());
                         telefoneTxt.setText(dt.child("telefone").getValue().toString());
+
                         usuario.setNome(nomeTxt.getText().toString());
                         usuario.setFuncao(dt.child("funcao").getValue().toString());
                         usuario.setEmail(emailTxt.getText().toString());
                         usuario.setTelefone(telefoneTxt.getText().toString());
                         usuario.setMatricula(matriculaTxt.getText().toString());
+                        usuario.setConfirma("1");
 
                         return;
                     }
@@ -125,9 +129,21 @@ public class EditarPerfilUsuario extends AppCompatActivity {
                 for (DataSnapshot dt : dataSnapshot.getChildren()) {
                     if (dt.getKey() != null && dt.getKey().equals(usuario.getMatricula())) {
 
-                        DatabaseReference dbUsuario1 = referencia.child("Iesb").child("Usuario");
-                        dbUsuario1.orderByChild("Usuario").equalTo(usuario.getMatricula());
-                        dbUsuario1.child(usuario.matricula).setValue(usuario);
+                        DatabaseReference dbUsuario = referencia.child("Iesb").child("Usuario");
+                        dbUsuario.orderByChild("Usuario").equalTo(usuario.getMatricula());
+
+                        FirebaseUser atualizaEmail = FirebaseAuth.getInstance().getCurrentUser();
+
+                        atualizaEmail.updateEmail(usuario.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(EditarPerfilUsuario.this, "email atualizado!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        dbUsuario.child(usuario.matricula).setValue(usuario);
                         Toast.makeText(EditarPerfilUsuario.this, "Dados Atualizados com sucesso!", Toast.LENGTH_SHORT).show();
                         return;
                     }

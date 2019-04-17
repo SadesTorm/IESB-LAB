@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         usuario.setEmail(dt.child("email").getValue().toString());
+                        usuario.setFuncao(dt.child("funcao").getValue().toString());
 
                         Task task = autenticaLogin.signInWithEmailAndPassword(usuario.getEmail(),senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -94,16 +95,20 @@ public class MainActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = autenticaLogin.getCurrentUser();
                                     Toast.makeText(activity, "logando:" + user.getEmail(), Toast.LENGTH_SHORT).show();
-                                    Intent iLogin = new Intent(activity, PerfilUsuario.class);
-                                    startActivity(iLogin);
+                                    if(usuario.getFuncao().equals("Gestor")){
+
+                                        Intent i= new Intent(activity, PerfilGestor.class);
+                                        startActivity(i);
+                                    }else {
+                                        Intent iLogin = new Intent(activity, PerfilUsuario.class);
+                                        startActivity(iLogin);
+                                    }
 
                                 } else {
                                     Toast.makeText(activity, "Email ou senha invalido.", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
-                    }else{
-                        Toast.makeText(activity, "Matricula aguardando confirmação ou invalida", Toast.LENGTH_LONG).show();
                     }
                 }
             }
