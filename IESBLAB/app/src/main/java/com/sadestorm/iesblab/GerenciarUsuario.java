@@ -78,8 +78,11 @@ public class GerenciarUsuario extends AppCompatActivity {
                 listaUsuario.clear();
                 for (DataSnapshot dt : dataSnapshot.getChildren()) {
                     txtteste.setText("funcionando");
-                    Usuario u = dt.getValue(Usuario.class);
-                    listaUsuario.add(u);
+
+                    if(dt.hasChild("confirma") && dt.child("confirma").getValue().equals("0")) {
+                        Usuario u = dt.getValue(Usuario.class);
+                        listaUsuario.add(u);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
