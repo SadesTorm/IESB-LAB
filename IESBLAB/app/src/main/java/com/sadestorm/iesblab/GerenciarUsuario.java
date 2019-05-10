@@ -31,7 +31,7 @@ public class GerenciarUsuario extends AppCompatActivity {
     private AdapterUsuario adapter;
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb/Usuario");
 
-    TextView txtteste;
+
 
     private ChildEventListener c;
 
@@ -44,7 +44,7 @@ public class GerenciarUsuario extends AppCompatActivity {
 
         viewRecycle = findViewById(R.id.recyclerView);
 
-        txtteste = findViewById(R.id.txttudocerto);
+
         listaUsuario = new ArrayList<Usuario>();
 
 
@@ -65,7 +65,7 @@ public class GerenciarUsuario extends AppCompatActivity {
 
 
        Query consulta = referencia.orderByChild("matricula");
-        txtteste.setText("funcionando");
+
 
 
 
@@ -74,10 +74,10 @@ public class GerenciarUsuario extends AppCompatActivity {
             @Override
 
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                txtteste.setText("foooooor");
+
                 listaUsuario.clear();
                 for (DataSnapshot dt : dataSnapshot.getChildren()) {
-                    txtteste.setText("funcionando");
+
 
                     if(dt.hasChild("confirma") && dt.child("confirma").getValue().equals("0")) {
                         Usuario u = dt.getValue(Usuario.class);

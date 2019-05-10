@@ -1,11 +1,13 @@
 package com.sadestorm.iesblab;
 
 import android.content.Intent;
+
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,7 @@ public class PerfilUsuario extends AppCompatActivity {
     Button sairBtn;
 
 
+
     DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
     FirebaseAuth verificaEmail = FirebaseAuth.getInstance();
 
@@ -37,6 +40,8 @@ public class PerfilUsuario extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
+
+
 
         nomeTxt = findViewById(R.id.txtNomePerfil);
         funcaoTxt = findViewById(R.id.txtFuncao);
@@ -52,7 +57,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
         novaResevaBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent iNovaReseva = new Intent(PerfilUsuario.this, PerfilGestor.class);
+                Intent iNovaReseva = new Intent(PerfilUsuario.this, NovaReserva.class);
                 startActivity(iNovaReseva);
             }
         });
@@ -73,6 +78,7 @@ public class PerfilUsuario extends AppCompatActivity {
                 startActivity(iSair);
             }
         });
+
     }
 
     public void carregaDados() {

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -52,7 +52,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         salvarBtn = findViewById(R.id.btnSalvar);
         cancelarBtn = findViewById(R.id.btnCancelar);
 
-        carregaDados();
+      //  carregaDados();
 
         salvarBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
