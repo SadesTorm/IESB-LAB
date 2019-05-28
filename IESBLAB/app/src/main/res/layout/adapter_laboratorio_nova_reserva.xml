@@ -25,7 +25,7 @@
 
             <TextView
                 android:id="@+id/txtSistemaOperacional"
-                android:layout_width="wrap_content"
+                android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:text="Sistema Operacional" />
 
@@ -44,7 +44,7 @@
 
         <TextView
             android:id="@+id/txtQtdMaquinas"
-            android:layout_width="131dp"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:text="Maquinas" />

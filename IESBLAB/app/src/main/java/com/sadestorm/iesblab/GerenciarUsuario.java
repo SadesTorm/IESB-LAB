@@ -32,9 +32,6 @@ public class GerenciarUsuario extends AppCompatActivity {
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb/Usuario");
 
 
-
-    private ChildEventListener c;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

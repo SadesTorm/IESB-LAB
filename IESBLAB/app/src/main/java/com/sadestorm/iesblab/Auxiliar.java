@@ -5,6 +5,24 @@ public class Auxiliar {
     public int dia ;
     public int mes ;
     public int ano ;
+    public String lab;
+    public String os;
+
+    public String getLab() {
+        return lab;
+    }
+
+    public void setLab(String lab) {
+        this.lab = lab;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
 
     public Auxiliar() {
 

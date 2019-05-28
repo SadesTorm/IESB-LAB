@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Calendario"></activity>
+        <activity android:name=".RecycleLaboratorio"></activity>
+        <activity android:name=".Calendario" />
         <activity android:name=".NovaReserva" />
         <activity android:name=".GerenciarUsuario" />
         <activity android:name=".PerfilGestor" />

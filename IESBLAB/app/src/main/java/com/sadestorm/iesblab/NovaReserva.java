@@ -34,10 +34,8 @@ public class NovaReserva extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     Calendar calendario;
 
-    private RecyclerView viewRecycle;
-    private List<Usuario> listalab;
-    //private AdapterUsuario adapter;
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb/laboratorio");
+
+   // private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb/laboratorio");
 
 
     @Override
@@ -53,11 +51,10 @@ public class NovaReserva extends AppCompatActivity {
         labBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent iRecycleViewLabs = new Intent(NovaReserva.this,RecycleLaboratorio.class);
+                startActivity(iRecycleViewLabs);
             }
         });
-
-
 
         dataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,9 +62,6 @@ public class NovaReserva extends AppCompatActivity {
                 calendarioDialog(v);
             }
         });
-
-
-
 
     }
 
@@ -97,6 +91,7 @@ public class NovaReserva extends AppCompatActivity {
 
     }
 
+    /*
     public void carregarLaboratorios (){
 
         Query consulta = referencia.orderByChild("laboratorio");
@@ -125,6 +120,6 @@ public class NovaReserva extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
-}
+
