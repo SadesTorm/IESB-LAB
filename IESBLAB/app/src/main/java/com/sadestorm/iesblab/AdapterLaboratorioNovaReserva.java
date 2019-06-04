@@ -37,6 +37,7 @@ public class AdapterLaboratorioNovaReserva extends RecyclerView.Adapter<AdapterL
 
         viewHolderLabs.laboratorioTxt.setText(lab.getLab());
         viewHolderLabs.osTxt.setText(lab.getOs());
+        //viewHolderLabs.qtdMaquinasTxt.setText(lab.getQtdMaquinas());
     }
 
     @Override
@@ -49,12 +50,14 @@ public class AdapterLaboratorioNovaReserva extends RecyclerView.Adapter<AdapterL
 
         TextView laboratorioTxt;
         TextView osTxt;
+        TextView qtdMaquinasTxt;
 
         public ViewHolderLabs(@NonNull View itemView) {
             super(itemView);
 
             laboratorioTxt = itemView.findViewById(R.id.txtLaboratorio);
             osTxt = itemView.findViewById(R.id.txtOs);
+            qtdMaquinasTxt = itemView.findViewById(R.id.txtMaquinas);
 
         }
     }

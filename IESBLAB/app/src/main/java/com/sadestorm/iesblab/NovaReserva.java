@@ -53,6 +53,7 @@ public class NovaReserva extends AppCompatActivity {
             public void onClick(View v) {
                 Intent iRecycleViewLabs = new Intent(NovaReserva.this,RecycleLaboratorio.class);
                 startActivity(iRecycleViewLabs);
+
             }
         });
 
