@@ -37,9 +37,10 @@ public class RecycleLaboratorio extends AppCompatActivity {
         recyclelab.setLayoutManager(layoutManager);
         recyclelab.setHasFixedSize(true);
 
-        AdapterLaboratorioNovaReserva adapterLabs = new AdapterLaboratorioNovaReserva(listaLabs);
+        adapterLabs = new AdapterLaboratorioNovaReserva(listaLabs);
 
-        recyclelab.setAdapter( adapterLabs);
+        recyclelab.setAdapter(adapterLabs);
+        carregaDados();
     }
 
     public void carregaDados(){
@@ -58,8 +59,10 @@ public class RecycleLaboratorio extends AppCompatActivity {
                 listaLabs.clear();
                 for (DataSnapshot dt : dataSnapshot.getChildren()) {
 
+                    if(dt.child("lab").getValue() != null) {
                         Auxiliar u = dt.getValue(Auxiliar.class);
                         listaLabs.add(u);
+                    }
 
                 }
                 adapterLabs.notifyDataSetChanged();

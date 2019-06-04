@@ -7,6 +7,62 @@ public class Auxiliar {
     public int ano ;
     public String lab;
     public String os;
+    public String andar;
+    public String bloco;
+    public int memoria;
+    public int qtdMaquinas;
+    public String processador;
+
+    public Auxiliar( String andar, String bloco,String lab, int memoria, int qtdMaquinas, String os, String processador) {
+
+        this.os = os;
+        this.andar = andar;
+        this.bloco = bloco;
+        this.memoria = memoria;
+        this.qtdMaquinas = qtdMaquinas;
+        this.processador = processador;
+        this.lab = lab;
+    }
+
+    public String getAndar() {
+        return andar;
+    }
+
+    public void setAndar(String andar) {
+        this.andar = andar;
+    }
+
+    public String getBloco() {
+        return bloco;
+    }
+
+    public void setBloco(String bloco) {
+        this.bloco = bloco;
+    }
+
+    public int getMemoria() {
+        return memoria;
+    }
+
+    public void setMemoria(int memoria) {
+        this.memoria = memoria;
+    }
+
+    public int getQtdMaquinas() {
+        return qtdMaquinas;
+    }
+
+    public void setQtdMaquinas(int qtdMaquinas) {
+        this.qtdMaquinas = qtdMaquinas;
+    }
+
+    public String getProcessador() {
+        return processador;
+    }
+
+    public void setProcessador(String processador) {
+        this.processador = processador;
+    }
 
     public String getLab() {
         return lab;

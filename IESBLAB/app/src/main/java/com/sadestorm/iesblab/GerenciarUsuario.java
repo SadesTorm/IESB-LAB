@@ -80,6 +80,7 @@ public class GerenciarUsuario extends AppCompatActivity {
                         Usuario u = dt.getValue(Usuario.class);
                         listaUsuario.add(u);
                     }
+
                 }
                 adapter.notifyDataSetChanged();
             }
