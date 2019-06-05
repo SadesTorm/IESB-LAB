@@ -1,6 +1,7 @@
 package com.sadestorm.iesblab;
 
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -76,9 +77,6 @@ public class RecycleLaboratorio extends AppCompatActivity {
     public void carregaDados(){
 
         Query consulta = referencia.orderByChild("laboratorio");
-
-
-
 
         consulta.addListenerForSingleValueEvent(new ValueEventListener() {
 
