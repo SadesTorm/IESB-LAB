@@ -9,17 +9,17 @@ public class Auxiliar {
     public String os;
     public String andar;
     public String bloco;
-    public int memoria;
-    public int qtdMaquinas;
+    public String memoria;
+    public String num_maquina;
     public String processador;
 
-    public Auxiliar( String andar, String bloco,String lab, int memoria, int qtdMaquinas, String os, String processador) {
+    public Auxiliar( String andar, String bloco,String lab, String memoria, String num_maquina, String os, String processador) {
 
         this.os = os;
         this.andar = andar;
         this.bloco = bloco;
         this.memoria = memoria;
-        this.qtdMaquinas = qtdMaquinas;
+        this.num_maquina = num_maquina;
         this.processador = processador;
         this.lab = lab;
     }
@@ -40,20 +40,20 @@ public class Auxiliar {
         this.bloco = bloco;
     }
 
-    public int getMemoria() {
+    public String getMemoria() {
         return memoria;
     }
 
-    public void setMemoria(int memoria) {
+    public void setMemoria(String memoria) {
         this.memoria = memoria;
     }
 
-    public int getQtdMaquinas() {
-        return qtdMaquinas;
+    public String getNum_maquina() {
+        return num_maquina;
     }
 
-    public void setQtdMaquinas(int qtdMaquinas) {
-        this.qtdMaquinas = qtdMaquinas;
+    public void setNum_maquina(String num_maquina) {
+        this.num_maquina = num_maquina;
     }
 
     public String getProcessador() {

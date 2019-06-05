@@ -16,6 +16,7 @@ import java.util.List;
 
 
 public class AdapterLaboratorioNovaReserva extends RecyclerView.Adapter<AdapterLaboratorioNovaReserva.ViewHolderLabs> {
+
     private List<Auxiliar> listaLab;
 
     public AdapterLaboratorioNovaReserva(List<Auxiliar> lista) {
@@ -37,7 +38,7 @@ public class AdapterLaboratorioNovaReserva extends RecyclerView.Adapter<AdapterL
 
         viewHolderLabs.laboratorioTxt.setText(lab.getLab());
         viewHolderLabs.osTxt.setText(lab.getOs());
-        //viewHolderLabs.qtdMaquinasTxt.setText(lab.getQtdMaquinas());
+        viewHolderLabs.qtdMaquinasTxt.setText(lab.getNum_maquina());
     }
 
     @Override

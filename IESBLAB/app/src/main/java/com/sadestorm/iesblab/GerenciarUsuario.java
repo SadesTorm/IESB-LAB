@@ -5,15 +5,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.database.ChildEventListener;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,8 +49,33 @@ public class GerenciarUsuario extends AppCompatActivity {
         RecyclerView.LayoutManager layaoutUsuario = new LinearLayoutManager(getApplicationContext());
         viewRecycle.setLayoutManager(layaoutUsuario);
         viewRecycle.setHasFixedSize(true);
+        viewRecycle.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         adapter = new AdapterUsuario(listaUsuario);
         viewRecycle.setAdapter(adapter);
+        viewRecycle.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(),
+                viewRecycle,
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        Toast.makeText(getApplicationContext(),"Item precionado" ,Toast.LENGTH_SHORT).show();
+
+
+
+                    }
+
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+                        Toast.makeText(getApplicationContext(),"Click longo",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                }));
+
         carregaDados();
 
     }
