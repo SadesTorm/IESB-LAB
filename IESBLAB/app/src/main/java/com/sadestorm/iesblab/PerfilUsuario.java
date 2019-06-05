@@ -44,7 +44,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
 
         nomeTxt = findViewById(R.id.txtNomePerfil);
-        funcaoTxt = findViewById(R.id.txtFuncao);
+        funcaoTxt = findViewById(R.id.txtFuncao1);
 
         novaResevaBtn = findViewById(R.id.btnNovaReserva);
         resevasBtn = findViewById(R.id.btnResevas);

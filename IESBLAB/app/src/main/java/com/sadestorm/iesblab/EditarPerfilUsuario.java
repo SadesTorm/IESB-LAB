@@ -43,8 +43,8 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil_usuario);
 
-        nomeTxt = findViewById(R.id.txtNome);
-        matriculaTxt = findViewById(R.id.txtMatricula);
+        nomeTxt = findViewById(R.id.txtFuncao);
+        matriculaTxt = findViewById(R.id.txt);
         emailTxt = findViewById(R.id.txtEmail);
         telefoneTxt = findViewById(R.id.txtTelefone);
 

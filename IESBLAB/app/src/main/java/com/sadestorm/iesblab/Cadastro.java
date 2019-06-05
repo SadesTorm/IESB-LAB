@@ -47,8 +47,8 @@ public class Cadastro extends AppCompatActivity {
 
         // VARIAVEIS TIPO EDIT TEXT
 
-        matriculaTxt = findViewById(R.id.txtMatricula);
-        nomeTxt = findViewById(R.id.txtNome);
+        matriculaTxt = findViewById(R.id.txt);
+        nomeTxt = findViewById(R.id.txtFuncao);
         telefoneTxt = findViewById(R.id.txtTelefone);
         emailTxt = findViewById(R.id.txtEmail);
         senhaTxt = findViewById(R.id.txtSenha);

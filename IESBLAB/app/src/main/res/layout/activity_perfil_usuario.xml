@@ -33,7 +33,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFuncao" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFuncao1" />
 
     <Button
         android:id="@+id/btnResevas"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnEditarPerfil" />
 
     <TextView
-        android:id="@+id/txtFuncao"
+        android:id="@+id/txtFuncao1"
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        matriculaTxt = findViewById(R.id.txtMatricula);
+        matriculaTxt = findViewById(R.id.txt);
         senhaTxt = findViewById(R.id.txtSenha);
 
         cadastrarBtn = findViewById(R.id.btnCadastrar);

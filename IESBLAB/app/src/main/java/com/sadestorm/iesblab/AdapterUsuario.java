@@ -41,6 +41,9 @@ public class AdapterUsuario extends RecyclerView.Adapter<AdapterUsuario.ViewHold
         viewHolderGerenciaUsuario.matriculaTxt.setText(usuario.getMatricula());
         viewHolderGerenciaUsuario.funcaoTxt.setText(usuario.getFuncao());
         viewHolderGerenciaUsuario.nomeTxt.setText(usuario.getNome());
+        viewHolderGerenciaUsuario.telefoneTxt.setText(usuario.getTelefone());
+        viewHolderGerenciaUsuario.emailTxt.setText(usuario.getEmail());
+
 
     }
 
@@ -52,9 +55,12 @@ public class AdapterUsuario extends RecyclerView.Adapter<AdapterUsuario.ViewHold
 
     public class ViewHolderGerenciaUsuario extends RecyclerView.ViewHolder {
 
+        TextView funcaoTxt;
         TextView matriculaTxt;
         TextView nomeTxt;
-        TextView funcaoTxt;
+        TextView emailTxt;
+        TextView telefoneTxt;
+
 
 
         public ViewHolderGerenciaUsuario(@NonNull View itemView) {
@@ -63,6 +69,9 @@ public class AdapterUsuario extends RecyclerView.Adapter<AdapterUsuario.ViewHold
             matriculaTxt = itemView.findViewById(R.id.txtMatricula);
             nomeTxt = itemView.findViewById(R.id.txtNome);
             funcaoTxt = itemView.findViewById(R.id.txtFuncao);
+            emailTxt = itemView.findViewById(R.id.txtEmail);
+            telefoneTxt = itemView.findViewById(R.id.txtTelefone);
+
         }
     }
 

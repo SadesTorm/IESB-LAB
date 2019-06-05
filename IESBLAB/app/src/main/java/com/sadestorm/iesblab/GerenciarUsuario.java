@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,10 +58,15 @@ public class GerenciarUsuario extends AppCompatActivity {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+                        Usuario u = listaUsuario.get(position);
+                        Toast.makeText(getApplicationContext(),"Item precionado" + u.getConfirma(),Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(getApplicationContext(),"Item precionado" ,Toast.LENGTH_SHORT).show();
 
 
+
+                        DatabaseReference dbUsuario = referencia.child(u.getMatricula());
+
+                        dbUsuario.child("confirma").setValue("1");
 
                     }
 
