@@ -69,6 +69,8 @@ public class NovaReserva extends AppCompatActivity {
     public void calendarioDialog (View view){
 
         calendario = Calendar.getInstance();
+        calendario.setTimeInMillis(System.currentTimeMillis());
+
 
         int day = calendario.get(Calendar.DAY_OF_MONTH);
         int mes = calendario.get(Calendar.MONTH);
@@ -80,7 +82,8 @@ public class NovaReserva extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 dataBtn.setText(dayOfMonth + " / " + (month + 1) + "/" + year);
             }
-        },10,12,2016) ;
+        },ano,mes,day) ;
+
 
 
         datePickerDialog.show();
