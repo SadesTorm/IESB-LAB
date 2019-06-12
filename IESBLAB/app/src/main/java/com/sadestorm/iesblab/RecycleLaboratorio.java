@@ -1,5 +1,6 @@
 package com.sadestorm.iesblab;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,8 @@ public class RecycleLaboratorio extends AppCompatActivity {
         adapterLabs = new AdapterLaboratorioNovaReserva(listaLabs);
 
         recyclelab.setAdapter(adapterLabs);
+
+
         recyclelab.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(),
                 recyclelab,
                 new RecyclerItemClickListener.OnItemClickListener() {
@@ -55,8 +58,9 @@ public class RecycleLaboratorio extends AppCompatActivity {
                 Auxiliar aux = listaLabs.get(position);
                 Toast.makeText(getApplicationContext(),"Item precionado" + aux.getLab(),Toast.LENGTH_SHORT).show();
 
-
-
+                Intent i = new Intent(RecycleLaboratorio.this, NovaReserva.class);
+                i.putExtra("labss",aux.getLab());
+                startActivity(i);
             }
 
 

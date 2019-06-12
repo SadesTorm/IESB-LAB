@@ -5,6 +5,9 @@ public class Auxiliar {
     public int dia ;
     public int mes ;
     public int ano ;
+    public int hora;
+    public int minuto;
+    public String teste;
     public String lab;
     public String os;
     public String andar;
@@ -112,5 +115,37 @@ public class Auxiliar {
 
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    ///// AUXILIAR NA GRAVAÇAO DA RESERVA
+
+    public Auxiliar(int hora, int minuto){
+        this.hora = hora;
+        this.minuto = minuto;
+    }
+
+    public int getHora() {
+        return hora;
+    }
+
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public int getMinuto() {
+        return minuto;
+    }
+
+    public void setMinuto(int minuto) {
+        this.minuto = minuto;
+
+    }
+
+    public String getTeste() {
+        return teste;
+    }
+
+    public void setTeste(String teste) {
+        this.teste = teste;
     }
 }
