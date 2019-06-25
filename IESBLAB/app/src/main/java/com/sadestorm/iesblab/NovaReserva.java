@@ -1,12 +1,16 @@
 package com.sadestorm.iesblab;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.YuvImage;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +43,11 @@ public class NovaReserva extends AppCompatActivity {
     Button labBtn;
     Button horaEntradaBtn;
     Button horaSaidaBtn;
-
+    Button salvarBtn;
+    Button cancelarBtn;
+    public String entrada, saida,data,matricula,lab;
+    public Usuario usuario;
+    public Reservas resevar;
 
     TimePickerDialog timePickerDialog;
 
@@ -47,6 +56,8 @@ public class NovaReserva extends AppCompatActivity {
     public Auxiliar aux = new Auxiliar();
 
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb");
+    DatabaseReference referenciaUs = FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth verificaEmail = FirebaseAuth.getInstance();
 
     public String a;
 
@@ -55,20 +66,23 @@ public class NovaReserva extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_reserva);
 
-        dataTxt = findViewById(R.id.txtData);
+
 
         dataBtn = findViewById(R.id.btnData);
         labBtn = findViewById(R.id.btnLab);
         horaEntradaBtn = findViewById(R.id.btnHoraEntrada);
         horaSaidaBtn = findViewById(R.id.btnHoraSaida);
+        salvarBtn = findViewById(R.id.btnSalvar);
+        cancelarBtn = findViewById(R.id.btnCancelar);
 
         horaEntradaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clockDialogEntrada(v);
+
             }
         });
-
+        dataBtn.setEnabled(false);
         horaSaidaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,23 +91,18 @@ public class NovaReserva extends AppCompatActivity {
 
             }
         });
-       // String a;
+
 
         labBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent iRecycleViewLabs = new Intent(NovaReserva.this, RecycleLaboratorio.class);
+             public void onClick(View v) {
+                 Intent i = new Intent(NovaReserva.this, RecycleLaboratorio.class);
+                 startActivityForResult(i, 1);
+                 dataBtn.setEnabled(true);
+                 }
+             }
 
-
-                //  carregarLaboratorios();
-
-                startActivity(iRecycleViewLabs);
-
-
-
-            }
-        });
-
+        );
 
 
         dataBtn.setOnClickListener(new View.OnClickListener() {
@@ -104,13 +113,31 @@ public class NovaReserva extends AppCompatActivity {
 
             }
         });
-        Intent i = getIntent();
-        Bundle bd = i.getExtras();
-        if(bd != null)
-        {
-            String getName = (String) bd.get("labss");
-            dataTxt.setText(getName);
-        }
+
+        carregaDadosUs();
+
+
+        salvarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                matricula = usuario.getMatricula();
+                resevar = new Reservas(matricula,data,entrada,lab,saida,"Reservado");
+
+                DatabaseReference dbUsuario = referencia.child("Reservas");
+                //dbUsuario.child(matricula).setValue(resevar);
+                dbUsuario.push().setValue(resevar);
+                Alerta(v);
+
+            }
+        });
+
+        cancelarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NovaReserva.this, PerfilUsuario.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -128,6 +155,7 @@ public class NovaReserva extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 dataBtn.setText(dayOfMonth + " / " + (month + 1) + "/" + year);
+                data = (dayOfMonth + "/" + (month + 1) + "/" + year);
             }
         }, ano, mes, day);
 
@@ -137,7 +165,7 @@ public class NovaReserva extends AppCompatActivity {
     public void clockDialogEntrada(View view) {
 
         Calendar cal = Calendar.getInstance();
-        cal.setTimeZone(TimeZone.getTimeZone("GMT"));
+        cal.setTimeInMillis(System.currentTimeMillis());
 
         int h = cal.get(Calendar.HOUR_OF_DAY);
         int m = cal.get(Calendar.MINUTE);
@@ -146,6 +174,7 @@ public class NovaReserva extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 horaEntradaBtn.setText(hourOfDay + " : " + minute);
+                entrada = (hourOfDay + " : " + minute);
 
             }
         }, h, m, true);
@@ -155,7 +184,7 @@ public class NovaReserva extends AppCompatActivity {
     public void clockDialogSaida(View view) {
 
         Calendar cal = Calendar.getInstance();
-        cal.setTimeZone(TimeZone.getTimeZone("GMT"));
+        cal.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         int h = cal.get(Calendar.HOUR_OF_DAY);
         int m = cal.get(Calendar.MINUTE);
@@ -164,36 +193,32 @@ public class NovaReserva extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 horaSaidaBtn.setText(hourOfDay + " : " + minute);
-
+                saida = (hourOfDay + " : " + minute);
             }
         }, h, m, true);
         timePickerDialog.show();
     }
 
-/*
-    public void carregarLaboratorios() {
+    public void carregaDadosUs() {
 
-        Query consulta = referencia.orderByChild("Iesb");
+        final String email;
+        DatabaseReference dbUsuario = referenciaUs.child("Iesb").child("Usuario");
+        email = verificaEmail.getCurrentUser().getEmail(); // verifica email logado.
 
-        final String a;
-
+        Query consulta = dbUsuario.orderByChild("email").equalTo(email);
         consulta.addListenerForSingleValueEvent(new ValueEventListener() {
-
             @Override
-
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-String a;
 
                 for (DataSnapshot dt : dataSnapshot.getChildren()) {
 
-                    if( dt.child("auxiliar").getValue() != null) {
+                    if (dt.child("email") != null && dt.child("email").getValue().equals(email)) {
+                        usuario = dt.getValue(Usuario.class);
 
-                       a   = dt.child("auxiliar").getValue().toString();
 
+                        return;
                     }
-
                 }
-
             }
 
             @Override
@@ -203,6 +228,50 @@ String a;
         });
     }
 
-*/
+    public void Alerta(View view){
+
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Efetuar Reserva");
+        dialog.setMessage("Deseja efetuar uma nova reserva ?");
+
+        dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(NovaReserva.this, NovaReserva.class);
+                startActivity(i);
+
+            }
+        });
+
+        dialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent i = new Intent(NovaReserva.this, PerfilUsuario.class);
+                startActivity(i);
+            }
+        });
+
+        dialog.create();
+        dialog.show();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+
+               lab = data.getStringExtra("labss");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
 }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -59,9 +60,35 @@ public class PerfilGestor extends AppCompatActivity {
             }
         });
 
+        reservasBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PerfilGestor.this,RecycleReservas.class);
+                startActivity(i);
+            }
+        });
 
-
-
+        novaReservaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PerfilGestor.this, RecyclerView.class);
+                startActivity(i);
+            }
+        });
+        editarPerfilBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PerfilGestor.this, EditarPerfilUsuario.class);
+                startActivity(i);
+            }
+        });
+        relatorioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PerfilGestor.this,RecycleReclame.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void carregaDados(){

@@ -1,5 +1,6 @@
 package com.sadestorm.iesblab;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -58,15 +59,24 @@ public class RecycleLaboratorio extends AppCompatActivity {
                 Auxiliar aux = listaLabs.get(position);
                 Toast.makeText(getApplicationContext(),"Item precionado" + aux.getLab(),Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(RecycleLaboratorio.this, NovaReserva.class);
-                i.putExtra("labss",aux.getLab());
-                startActivity(i);
+               // Intent i = new Intent(RecycleLaboratorio.this, NovaReserva.class);
+               // i.putExtra("labss",aux.getLab());
+                //startActivityForResult(i);
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("labss",aux.getLab());
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
+
+
+
             }
 
 
             @Override
             public void onLongItemClick(View view, int position) {
                 Toast.makeText(getApplicationContext(),"Click longo",Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -93,6 +103,7 @@ public class RecycleLaboratorio extends AppCompatActivity {
 
                     if(dt.child("lab").getValue() != null) {
                         Auxiliar u = dt.getValue(Auxiliar.class);
+
                         listaLabs.add(u);
                     }
 

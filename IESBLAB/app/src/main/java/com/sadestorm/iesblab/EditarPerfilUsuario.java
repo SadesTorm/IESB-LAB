@@ -52,7 +52,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         salvarBtn = findViewById(R.id.btnSalvar);
         cancelarBtn = findViewById(R.id.btnCancelar);
 
-      //  carregaDados();
+        carregaDados();
 
         salvarBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

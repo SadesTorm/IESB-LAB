@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         cadastrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iCadastro = new Intent(MainActivity.this, Tela1.class);
+                Intent iCadastro = new Intent(MainActivity.this, Cadastro.class);
                 startActivity(iCadastro);
             }
         });

@@ -1,5 +1,7 @@
 package com.sadestorm.iesblab;
 
+
+
 public class Auxiliar {
 
     public int dia ;
@@ -16,7 +18,13 @@ public class Auxiliar {
     public String num_maquina;
     public String processador;
 
-    public Auxiliar( String andar, String bloco,String lab, String memoria, String num_maquina, String os, String processador) {
+
+    public Auxiliar(int hora, String lab) {
+        this.hora = hora;
+        this.lab = lab;
+    }
+
+    public Auxiliar(String andar, String bloco, String lab, String memoria, String num_maquina, String os, String processador) {
 
         this.os = os;
         this.andar = andar;
@@ -148,4 +156,5 @@ public class Auxiliar {
     public void setTeste(String teste) {
         this.teste = teste;
     }
+
 }

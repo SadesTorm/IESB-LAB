@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecycleLaboratorio"></activity>
+        <activity android:name=".RecycleReclame"></activity>
+        <activity android:name=".ReclamacoeUsuario" />
+        <activity android:name=".RecycleReservas" />
+        <activity android:name=".RecycleLaboratorio" />
         <activity android:name=".NovaReserva" />
         <activity android:name=".GerenciarUsuario" />
         <activity android:name=".PerfilGestor" />

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
@@ -32,7 +33,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
 
 
-    DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
     FirebaseAuth verificaEmail = FirebaseAuth.getInstance();
 
     @Override
@@ -78,7 +79,20 @@ public class PerfilUsuario extends AppCompatActivity {
                 startActivity(iSair);
             }
         });
-
+        resevasBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iRecycleViewReservas = new Intent(PerfilUsuario.this, RecycleReservas.class);
+                startActivity(iRecycleViewReservas);
+            }
+        });
+        reclamacoesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PerfilUsuario.this,ReclamacoeUsuario.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void carregaDados() {
