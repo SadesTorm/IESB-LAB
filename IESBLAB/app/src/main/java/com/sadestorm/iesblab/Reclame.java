@@ -9,6 +9,9 @@ public class Reclame {
         this.reclame = reclame;
         this.matricula = matricula;
     }
+    public Reclame(){
+
+    }
 
     public String getReclame() {
         return reclame;
@@ -25,4 +28,5 @@ public class Reclame {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+
 }

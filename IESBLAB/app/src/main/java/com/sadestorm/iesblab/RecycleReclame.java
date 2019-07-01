@@ -23,7 +23,7 @@ public class RecycleReclame extends AppCompatActivity {
     private RecyclerView recycleReclame;
     private List<Reclame> listReclame;
     private AdapterReclame adapterReclame;
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb/Reclamacao");
+    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("Iesb/Reclamacoes");
 
 
     @Override
@@ -33,7 +33,7 @@ public class RecycleReclame extends AppCompatActivity {
 
         recycleReclame = findViewById(R.id.recyclerReclame);
         listReclame = new ArrayList<Reclame>();
-        carregaDados();
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recycleReclame.setLayoutManager(layoutManager);
         recycleReclame.setHasFixedSize(true);
@@ -45,7 +45,7 @@ public class RecycleReclame extends AppCompatActivity {
     }
     public void carregaDados(){
 
-        Query consulta = referencia.orderByChild("Reclamacao");
+        Query consulta = referencia.orderByChild("Reclamacoes");
 
         consulta.addListenerForSingleValueEvent(new ValueEventListener() {
 
